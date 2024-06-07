@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../../dist/vue.global.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+</body>
+<script>
+  const { compile, h, render } = Vue
+  // 创建组件
+  const component = {
+    render: function (_ctx, _cache) {
+      with (_ctx) {
+        const { openBlock: _openBlock, createElementBlock: _createElementBlock } = Vue // 把 _Vue 改为 Vue
+
+        return (_openBlock(), _createElementBlock("div", null, "hello world"))
+      }
+    }
+  }
+  console.log(component);
+  // 通过 h 函数，生成 vnode
+  const vnode = h(component)
+  console.log(vnode);
+
+  // 通过 render 函数渲染组件
+  render(vnode, document.querySelector('#app'))
+</script>
+
+</html>
